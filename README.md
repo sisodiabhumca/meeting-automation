@@ -1,46 +1,83 @@
-# Meeting Automation Assistant
+# Meeting Automation Assistant 🤖
 
-This script automates the process of gathering meeting information from various sources and generating summaries.
+A user-friendly tool that helps you manage and summarize your meetings automatically. It works with your calendar, chat platforms, and AI models to create clear, concise summaries of your meetings.
 
-## Features
+## 🚀 What It Does
 
-- Reads meeting details from Google Calendar
-- Searches Slack for related messages
-- Searches Gmail for related emails
-- Searches Google Drive for related files
-- Generates comprehensive summaries using ChatGPT
+1. **Reads Your Meetings**
+   - Automatically fetches upcoming meetings from your calendar
+   - Supports Google Calendar, Microsoft Outlook, and Webex
 
-## Setup Instructions
+2. **Gathers Context**
+   - Collects related emails and documents
+   - Finds relevant chat messages from Slack, Microsoft Teams
 
-1. Install required packages:
+### 1. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Set up environment variables:
-Create a `.env` file with the following variables:
+### 2. Configure Environment
+Create a `.env` file with your credentials:
 ```
 OPENAI_API_KEY=your_openai_api_key
-SLACK_BOT_TOKEN=your_slack_bot_token
+SLACK_BOT_TOKEN=xoxb-your-bot-token
+SLACK_APP_TOKEN=xapp-your-app-token
 ```
 
-3. Google Calendar Setup:
-- Go to Google Cloud Console and create a new project
-- Enable Calendar API, Gmail API, and Drive API
-- Download credentials.json and place it in the project directory
-- Run the script once to authenticate and create token.json
+### 3. Set Up Services
 
-4. Slack Setup:
-- Create a Slack app
-- Install the app to your workspace
-- Get the Bot User OAuth Token
-- Add the token to your .env file
+#### Google Calendar Setup
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
+2. Create a new project
+3. Enable these APIs:
+   - Calendar API
+   - Gmail API
+   - Drive API
+4. Create OAuth 2.0 credentials
+5. Download credentials.json
+
+#### Slack Setup
+1. Go to [Slack API](https://api.slack.com/apps)
+2. Create a new app
+3. Add these bot permissions:
+   - channels:read
+   - channels:history
+   - groups:read
+   - groups:history
+4. Install app to workspace
+5. Get Bot User OAuth Token
+6. Get App-Level Token
+
+#### OpenAI Setup
+1. Go to [OpenAI Platform](https://platform.openai.com)
+2. Create account
+3. Get API key
 
 ## Usage
 
-Run the script:
+### Run Setup Scripts
+```bash
+python setup_google_calendar.py
+python setup_slack.py
+python setup_openai.py
+```
+
+### Run Main Script
 ```bash
 python meeting_automation.py
 ```
 
-The script will process all meetings in the past and future day by default and save the results in `meeting_summary.json`.
+## Output
+
+The script will:
+1. Process all meetings
+2. Search for related information
+3. Generate summaries
+4. Save results in `meeting_summary.json`
+
+## Security
+
+- Never commit `.env` file
+- Keep API keys secure
+- Regularly rotate tokens
